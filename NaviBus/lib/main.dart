@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
+import 'screens/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Bus Tracker Login',
       theme: ThemeData(primarySwatch: Colors.red),
-      home: LoginScreen(), // Set LoginScreen as the first screen
+      initialRoute: '/', // Start at Login
+      routes: {
+        '/': (context) => LoginScreen(),
+        '/home': (context) => HomePage(),
+      },
     );
   }
 }
+

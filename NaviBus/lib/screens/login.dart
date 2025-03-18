@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bushehe/screens/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -60,7 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.all(15),
               child: ElevatedButton(
                 onPressed: () {
-                  print("OTP sent to: ${phoneController.text}");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF042F40), 

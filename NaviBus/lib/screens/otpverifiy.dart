@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bushehe/screens/home_page.dart';
+import 'package:navibus/screens/home_page.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
   final String phoneNumber; // Pass phone number from LoginScreen

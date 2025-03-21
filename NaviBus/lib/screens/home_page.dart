@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navibus/screens/busopts.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -39,8 +40,8 @@ class HomePage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildBusButton("AC Bus", "assets/acbus.png"),
-                _buildBusButton("Non-AC Bus", "assets/nonacbus.png"),
+                _buildBusButton("AC Bus", "assets/acbus.png",context),
+                _buildBusButton("Non-AC Bus", "assets/nonacbus.png",context),
               ],
             ),
           ),
@@ -77,7 +78,7 @@ class HomePage extends StatelessWidget {
   }
 
   // Function to create AC / Non-AC options as buttons with box shadow
-  Widget _buildBusButton(String text, String imagePath) {
+  Widget _buildBusButton(String text, String imagePath, BuildContext context) {
     return Container(
       width: 160,
       height: 150,
@@ -94,7 +95,10 @@ class HomePage extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
-          print("$text clicked");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const BusOptions()), // Navigate to BusOptions
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white, // Keep background for contrast

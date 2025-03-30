@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/login.dart';
 import 'screens/home_page.dart';
-import 'screens/otpverifiy.dart';
+import 'screens/otpverify.dart';
 import 'screens/busopts.dart';
 import 'screens/payment.dart';
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -13,18 +17,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Bus Tracker Login',
+      title: 'Bus Tracker',
       theme: ThemeData(primarySwatch: Colors.red),
-      initialRoute: '/', // Start at Login
+      initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        '/otpverify':(context) => OTPVerificationScreen(phoneNumber: "+919876543210"),
         '/home': (context) => HomePage(),
         '/busopts': (context) => BusOptions(),
-        '/payment':(context)=> const Payment(bus: null,),
-        '/paymentconfirm':(context)=> const Payment(bus: null,),
+        '/payment': (context) => const Payment(bus: null),
+        '/paymentconfirm': (context) => const Payment(bus: null),
       },
     );
   }
 }
-

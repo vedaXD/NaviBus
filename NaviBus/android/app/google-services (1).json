@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847605419293",
+    "project_id": "navi-bus",
+    "storage_bucket": "navi-bus.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847605419293:android:3fe3805b5ec9bb164d65f4",
+        "android_client_info": {
+          "package_name": "com.example.bushehe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHuBaxglcil49DLqURk1qUUeFEc7GlHuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

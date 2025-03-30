@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navibus/screens/paymentopts.dart';
 
 class Payment extends StatelessWidget {
   final dynamic bus; // Bus details passed from BusOptions
@@ -102,8 +103,9 @@ class Payment extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Payment Successful!")),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PaymentOptions(bus: bus)),
                         );
                       },
                       style: ElevatedButton.styleFrom(

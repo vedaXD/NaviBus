@@ -6,3 +6,6 @@ Non/ac and ac lead to same page
 OTP verify
 is json the best way to store bus data?
 navbar options
+update ui for everything, everything looks shit
+can add download ticket button
+add support screen

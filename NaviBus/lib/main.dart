@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/busopts': (context) => BusOptions(),
         '/payment':(context)=> const Payment(bus: null,),
+        '/paymentconfirm':(context)=> const Payment(bus: null,),
       },
     );
   }

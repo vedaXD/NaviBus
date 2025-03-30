@@ -3,6 +3,7 @@ import 'screens/login.dart';
 import 'screens/home_page.dart';
 import 'screens/otpverifiy.dart';
 import 'screens/busopts.dart';
+import 'screens/payment.dart';
 void main() {
   runApp(MyApp());
 }
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/otpverify':(context) => OTPVerificationScreen(phoneNumber: "+919876543210"),
         '/home': (context) => HomePage(),
         '/busopts': (context) => BusOptions(),
+        '/payment':(context)=> const Payment(bus: null,),
       },
     );
   }

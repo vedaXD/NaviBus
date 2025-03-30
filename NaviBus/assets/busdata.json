@@ -13,7 +13,7 @@
       "source": "Navi Mumbai",
       "destination": "Thane",
       "duration": "60 min",
-      "fare": 60,
+      "fare": 100,
       "arriving_in": "5 min",
       "availability": 70
     },

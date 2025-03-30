@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:convert'; // To decode JSON
-import 'package:flutter/services.dart'; // To load JSON file
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'payment.dart'; // Import the Payment screen
 
 class BusOptions extends StatefulWidget {
   const BusOptions({super.key});
@@ -21,7 +22,6 @@ class _BusOptionsState extends State<BusOptions> {
     loadBuses();
   }
 
-  // Load JSON data from assets
   Future<void> loadBuses() async {
     final String response = await rootBundle.loadString('assets/busdata.json');
     final data = json.decode(response);
@@ -30,7 +30,6 @@ class _BusOptionsState extends State<BusOptions> {
     });
   }
 
-  // Filter buses based on user input
   void filterBuses() {
     setState(() {
       filteredBuses = allBuses.where((bus) {
@@ -42,7 +41,6 @@ class _BusOptionsState extends State<BusOptions> {
     });
   }
 
-  // Swap source and destination
   void swapSourceDestination() {
     setState(() {
       String temp = sourceController.text;
@@ -64,7 +62,6 @@ class _BusOptionsState extends State<BusOptions> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Search Bar
             Row(
               children: [
                 Expanded(
@@ -96,8 +93,7 @@ class _BusOptionsState extends State<BusOptions> {
               ],
             ),
             const SizedBox(height: 20),
-            
-            // Bus List Section
+
             Expanded(
               child: filteredBuses.isEmpty
                   ? Column(
@@ -112,57 +108,65 @@ class _BusOptionsState extends State<BusOptions> {
                       itemCount: filteredBuses.length,
                       itemBuilder: (context, index) {
                         var bus = filteredBuses[index];
-                        return Card(
-                          elevation: 6,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                          child: Container(
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              gradient: LinearGradient(
-                                colors: [Colors.blue.shade100, Colors.white],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              boxShadow: [
-                                BoxShadow(color: Colors.grey.withOpacity(0.3), blurRadius: 5, spreadRadius: 2),
-                              ],
-                            ),
-                            child: Row(
-                              children: [
-                                // Bus Icon
-                                const Icon(Icons.directions_bus, size: 50, color: Colors.blueAccent),
-                                const SizedBox(width: 15),
 
-                                // Bus Details
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${bus['bus_number']} - ${bus['source']} → ${bus['destination']}",
-                                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Text("🕒 Duration: ${bus['duration']}", style: const TextStyle(fontSize: 14, color: Colors.grey)),
-                                      Text("💰 Fare: ₹${bus['fare']}", style: const TextStyle(fontSize: 14, color: Colors.green)),
-                                      Text("⏳ Arriving in: ${bus['arriving_in']}", style: const TextStyle(fontSize: 14, color: Colors.orange)),
-                                      Row(
-                                        children: [
-                                          const Icon(Icons.event_seat, color: Colors.purple, size: 18),
-                                          const SizedBox(width: 5),
-                                          Text("Availability: ${bus['availability']}%", style: TextStyle(
-                                            fontSize: 14,
-                                            color: bus['availability'] > 50 ? Colors.green : Colors.red,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Payment(bus: bus), // Passing bus details to Payment
+                              ),
+                            );
+                          },
+                          child: Card(
+                            elevation: 6,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(
+                                  colors: [Colors.blue.shade100, Colors.white],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
                                 ),
-                              ],
+                                boxShadow: [
+                                  BoxShadow(color: Colors.grey.withOpacity(0.3), blurRadius: 5, spreadRadius: 2),
+                                ],
+                              ),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.directions_bus, size: 50, color: Colors.blueAccent),
+                                  const SizedBox(width: 15),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${bus['bus_number']} - ${bus['source']} → ${bus['destination']}",
+                                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text("🕒 Duration: ${bus['duration']}", style: const TextStyle(fontSize: 14, color: Colors.grey)),
+                                        Text("💰 Fare: ₹${bus['fare']}", style: const TextStyle(fontSize: 14, color: Colors.green)),
+                                        Text("⏳ Arriving in: ${bus['arriving_in']}", style: const TextStyle(fontSize: 14, color: Colors.orange)),
+                                        Row(
+                                          children: [
+                                            const Icon(Icons.event_seat, color: Colors.purple, size: 18),
+                                            const SizedBox(width: 5),
+                                            Text("Availability: ${bus['availability']}%", style: TextStyle(
+                                              fontSize: 14,
+                                              color: bus['availability'] > 50 ? Colors.green : Colors.red,
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );

@@ -36,10 +36,13 @@ NaviBus is a mobile application designed to streamline public transportation by 
    ```  
 
 ## Screenshots  
-Add your app screenshots here:  
+![User Login](https://github.com/user-attachments/assets/b232d9f7-bdee-43b2-b6e6-a63a1abc2749)
+![OTP Verification](https://github.com/user-attachments/assets/040457a9-ac71-4c58-9c93-6c02881c6d7e)
+![Home Page](https://github.com/user-attachments/assets/a5398982-5675-405b-bdbc-8c304f560627)
+![Bus Options](https://github.com/user-attachments/assets/30937a17-1b35-4ed7-9e9d-75d0d21fa84b)
+![Payment](https://github.com/user-attachments/assets/a99d5373-b6d8-45a9-b72f-5ba0400d8e4a)
+![Payment Options](https://github.com/user-attachments/assets/b7679b38-9d2f-4957-9efa-c27e0cea6bbc)
 
-![Home Screen](screenshots/home.png)  
-![Payment Screen](screenshots/payment.png)  
 
 ## Future Improvements  
 - Integration with government transit systems.  

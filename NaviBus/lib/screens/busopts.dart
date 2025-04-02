@@ -25,13 +25,13 @@ class _BusOptionsState extends State<BusOptions> {
   Future<void> loadBuses() async {
     final String response = await rootBundle.loadString('assets/busdata.json');
     final data = json.decode(response);
-    setState(() {
-      allBuses = data;
-    });
+        setState(() {
+          allBuses = data;
+        });
   }
 
   void filterBuses() {
-    setState(() {
+        setState(() {
       filteredBuses = allBuses.where((bus) {
         return (sourceController.text.isEmpty ||
                 bus["source"].toString().toLowerCase().trim() == sourceController.text.toLowerCase().trim()) &&

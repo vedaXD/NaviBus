@@ -3,5 +3,6 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # Replace 'your_app_name' with your actual app name
+    path('api/', include('api.urls')),  # API routes for 'api' app
+    path('feedback/', include('feedback.urls')),  # Make sure feedback is properly included
 ]

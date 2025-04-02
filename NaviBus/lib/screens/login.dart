@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'otpverify.dart';
 
@@ -9,38 +8,20 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController phoneController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> sendOTP() async {
-  String phoneNumber = "+91" + phoneController.text.trim();
+  void sendOTP() {
+    String phoneNumber = "+91" + phoneController.text.trim();
 
-  await _auth.verifyPhoneNumber(
-    phoneNumber: phoneNumber,
-    timeout: Duration(seconds: 60),
-    verificationCompleted: (PhoneAuthCredential credential) async {
-      await _auth.signInWithCredential(credential);
-      print("Auto-verification successful");
-    },
-    verificationFailed: (FirebaseAuthException e) {
-      print("Verification Failed: ${e.message}");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Verification Failed: ${e.message}")),
-      );
-    },
-    codeSent: (String verificationId, int? resendToken) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => OTPVerificationScreen(
-            verificationId: verificationId,
-            phoneNumber: phoneNumber,
-          ),
+    // Navigate to OTP screen (Mock verification)
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OTPVerificationScreen(
+          phoneNumber: phoneNumber,
         ),
-      );
-    },
-    codeAutoRetrievalTimeout: (String verificationId) {},
-  );
-}
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

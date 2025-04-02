@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:navibus/screens/Feedback.dart';
 import 'payment.dart'; // Import the Payment screen
 
 class BusOptions extends StatefulWidget {
@@ -54,9 +55,29 @@ class _BusOptionsState extends State<BusOptions> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("NAVI BUS", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Text(
+          "NAVI BUS",
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF042F40),
+        backgroundColor: Color(0xFF042F40), // Custom Hex Color
+        actions: [
+          IconButton(
+            icon: Icon(Icons.support_agent, color: Colors.white), // Support Icon
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedbackPage()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.account_circle, color: Colors.white), // Profile Icon
+            onPressed: () {
+              // Navigate to Profile Page
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

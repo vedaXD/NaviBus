@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navibus/screens/Feedback.dart';
 import 'package:navibus/screens/busopts.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,6 +13,23 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF042F40), // Custom Hex Color
+        actions: [
+          IconButton(
+            icon: Icon(Icons.support_agent, color: Colors.white), // Support Icon
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedbackPage()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.account_circle, color: Colors.white), // Profile Icon
+            onPressed: () {
+              // Navigate to Profile Page
+            },
+          ),
+        ],
       ),
 
       body: Column(
@@ -34,14 +52,14 @@ class HomePage extends StatelessWidget {
 
           SizedBox(height: 50),
 
-          // 🚍 AC & Non-AC Options (Now with Box Shadow)
+          // 🚍 AC & Non-AC Options
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildBusButton("AC Bus", "assets/acbus.png",context),
-                _buildBusButton("Non-AC Bus", "assets/nonacbus.png",context),
+                _buildBusButton("AC Bus", "assets/acbus.png", context),
+                _buildBusButton("Non-AC Bus", "assets/nonacbus.png", context),
               ],
             ),
           ),
@@ -65,7 +83,7 @@ class HomePage extends StatelessWidget {
           // 📌 Logo & App Name
           Column(
             children: [
-              Image.asset("assets/logo.png", width: 200, height: 200), // Ensure logo exists in assets
+              Image.asset("assets/logo.png", width: 200, height: 200),
               SizedBox(height: 10),
               Text("NAVI BUS", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               Text("Driving Navi Mumbai Forward", style: TextStyle(color: Colors.black.withOpacity(0.3), fontSize: 18, fontWeight: FontWeight.w400)),
@@ -77,7 +95,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Function to create AC / Non-AC options as buttons with box shadow
+  // Function to create AC / Non-AC options as buttons
   Widget _buildBusButton(String text, String imagePath, BuildContext context) {
     return Container(
       width: 160,
@@ -86,10 +104,10 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3), // Shadow color
-            blurRadius: 10, // Blur intensity
-            spreadRadius: 2, // Spread size
-            offset: Offset(4, 4), // Shadow direction
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: Offset(4, 4),
           ),
         ],
       ),
@@ -97,12 +115,12 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const BusOptions()), // Navigate to BusOptions
+            MaterialPageRoute(builder: (context) => const BusOptions()),
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white, // Keep background for contrast
-          elevation: 0, // Remove default button shadow
+          backgroundColor: Colors.white,
+          elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
         child: Column(
@@ -110,7 +128,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text(text, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
             SizedBox(height: 10),
-            Image.asset(imagePath, width: 160, height: 100, fit: BoxFit.contain), // Custom Image
+            Image.asset(imagePath, width: 160, height: 100, fit: BoxFit.contain),
           ],
         ),
       ),

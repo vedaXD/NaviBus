@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navibus/screens/Feedback.dart';
 
 class PaymentOptions extends StatelessWidget {
   final dynamic bus; // Bus details
@@ -9,16 +10,29 @@ class PaymentOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "NAVI BUS",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 22, // Bigger text for better readability
-          ),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF042F40),
+        backgroundColor: Color(0xFF042F40), // Custom Hex Color
+        actions: [
+          IconButton(
+            icon: Icon(Icons.support_agent, color: Colors.white), // Support Icon
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedbackPage()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.account_circle, color: Colors.white), // Profile Icon
+            onPressed: () {
+              // Navigate to Profile Page
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
